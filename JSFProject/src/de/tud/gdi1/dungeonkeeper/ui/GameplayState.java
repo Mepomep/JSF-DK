@@ -1,4 +1,4 @@
-package de.tud.gdi1.dropofwater.ui;
+package de.tud.gdi1.dungeonkeeper.ui;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -55,7 +55,7 @@ public class GameplayState extends BasicGameState {
     	// Bei Drücken der ESC-Taste zurueck ins Hauptmenue wechseln
     	Entity esc_Listener = new Entity("ESC_Listener");
     	KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-    	esc_pressed.addAction(new ChangeStateAction(Launch.MAINMENU_STATE));
+    	esc_pressed.addAction(new ChangeStateAction(DungeonKeeper.MAINMENU_STATE));
     	esc_Listener.addComponent(esc_pressed);    	
     	entityManager.addEntity(stateID, esc_Listener);
     	
@@ -90,7 +90,7 @@ public class GameplayState extends BasicGameState {
 		    	// ... zerstoere den Wassertropfen
 		    	lse.addAction(new DestroyEntityAction());
 		    	// ... und wechsle ins Hauptmenue
-		    	lse.addAction(new ChangeStateAction(Launch.MAINMENU_STATE));
+		    	lse.addAction(new ChangeStateAction(DungeonKeeper.MAINMENU_STATE));
 		    	
 		    	drop.addComponent(lse);
 		    	entityManager.addEntity(stateID, drop);

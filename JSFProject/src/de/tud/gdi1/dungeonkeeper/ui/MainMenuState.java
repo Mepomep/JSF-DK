@@ -1,4 +1,4 @@
-package de.tud.gdi1.dropofwater.ui;
+package de.tud.gdi1.dungeonkeeper.ui;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -62,7 +62,7 @@ public class MainMenuState extends BasicGameState {
     	
     	// Erstelle das Ausloese-Event und die zugehoerige Action
     	ANDEvent mainEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-    	Action new_Game_Action = new ChangeStateInitAction(Launch.GAMEPLAY_STATE);
+    	Action new_Game_Action = new ChangeStateInitAction(DungeonKeeper.GAMEPLAY_STATE);
     	mainEvents.addAction(new_Game_Action);
     	new_Game_Entity.addComponent(mainEvents);
     	

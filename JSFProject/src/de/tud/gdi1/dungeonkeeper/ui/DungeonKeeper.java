@@ -1,4 +1,4 @@
-package de.tud.gdi1.dropofwater.ui;
+package de.tud.gdi1.dungeonkeeper.ui;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -13,13 +13,13 @@ import eea.engine.entity.StateBasedEntityManager;
  *         Diese Klasse startet das Spiel "Drop of Water". Es enthaelt zwei
  *         State's für das Menue und das eigentliche Spiel.
  */
-public class Launch extends StateBasedGame {
+public class DungeonKeeper extends StateBasedGame {
 
 	// Jeder State wird durch einen Integer-Wert gekennzeichnet
 	public static final int MAINMENU_STATE = 0;
 	public static final int GAMEPLAY_STATE = 1;
 
-	public Launch() {
+	public DungeonKeeper() {
 		super("Drop of Water");
 	}
 
@@ -34,7 +34,7 @@ public class Launch extends StateBasedGame {
 					System.getProperty("user.dir") + "/native/" + System.getProperty("os.name").toLowerCase());
 
 		// Setze dieses StateBasedGame in einen App Container (oder Fenster)
-		AppGameContainer app = new AppGameContainer(new Launch());
+		AppGameContainer app = new AppGameContainer(new DungeonKeeper());
 
 		// Lege die Einstellungen des Fensters fest und starte das Fenster
 		// (nicht aber im Vollbildmodus)
