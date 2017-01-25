@@ -32,6 +32,7 @@ public class GameplayState extends BasicGameState {
 
 	private int stateID; 							// Identifier dieses BasicGameState
 	private StateBasedEntityManager entityManager; 	// zugehoeriger entityManager
+	private Tile[][] map;
     
     GameplayState( int sid ) {
        stateID = sid;
