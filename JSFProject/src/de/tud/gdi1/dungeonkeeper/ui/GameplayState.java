@@ -9,6 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.tud.gdi1.dungeonkeeper.model.Map;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.action.basicactions.DestroyEntityAction;
@@ -46,12 +47,14 @@ public class GameplayState extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
     	
     	// Hintergrund laden
+
     	Entity background = new Entity("background");	// Entitaet fuer Hintergrund
     	background.setPosition(new Vector2f(400,300));	// Startposition des Hintergrunds
     	background.addComponent(new ImageRenderComponent(new Image("/assets/background.png"))); // Bildkomponente
     	    	
     	// Hintergrund-Entitaet an StateBasedEntityManager uebergeben
     	StateBasedEntityManager.getInstance().addEntity(stateID, background);
+		Map map = new Map(false);
     	
     	// Bei Drücken der ESC-Taste zurueck ins Hauptmenue wechseln
     	Entity esc_Listener = new Entity("ESC_Listener");
@@ -61,7 +64,7 @@ public class GameplayState extends BasicGameState {
     	entityManager.addEntity(stateID, esc_Listener);
     	
     	// Bei Mausklick soll Wassertropfen erscheinen
-    	Entity mouse_Clicked_Listener = new Entity("Mouse_Clicked_Listener");
+    	/*Entity mouse_Clicked_Listener = new Entity("Mouse_Clicked_Listener");
     	MouseClickedEvent mouse_Clicked = new MouseClickedEvent();
     	
     	mouse_Clicked.addAction(new Action() {
@@ -91,7 +94,7 @@ public class GameplayState extends BasicGameState {
 		    	// ... zerstoere den Wassertropfen
 		    	lse.addAction(new DestroyEntityAction());
 		    	// ... und wechsle ins Hauptmenue
-		    	lse.addAction(new ChangeStateAction(DungeonKeeper.MAINMENU_STATE));
+		    	//lse.addAction(new ChangeStateAction(DungeonKeeper.MAINMENU_STATE));
 		    	
 		    	drop.addComponent(lse);
 		    	entityManager.addEntity(stateID, drop);
@@ -100,6 +103,7 @@ public class GameplayState extends BasicGameState {
     	mouse_Clicked_Listener.addComponent(mouse_Clicked);
     	
     	entityManager.addEntity(stateID, mouse_Clicked_Listener);    	
+    	*/
     	
     }
 
