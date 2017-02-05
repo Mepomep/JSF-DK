@@ -34,6 +34,7 @@ public class GameplayState extends BasicGameState {
 	private int stateID; 							// Identifier dieses BasicGameState
 	private StateBasedEntityManager entityManager; 	// zugehoeriger entityManager
 	private Tile[][] map;
+	private int coreLife;
     
     GameplayState( int sid ) {
        stateID = sid;
@@ -123,6 +124,10 @@ public class GameplayState extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		// StatedBasedEntityManager soll alle Entities rendern
 		entityManager.renderEntities(container, game, g);
+		if (coreLife < 1)
+		{
+			//Game over logic
+		}
 	}
 
 	@Override

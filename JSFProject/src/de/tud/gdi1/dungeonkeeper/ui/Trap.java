@@ -1,8 +1,8 @@
 package de.tud.gdi1.dungeonkeeper.ui;
 
-public interface Trap 
+public abstract class Trap 
 {
 
-	public void trigger();
+	public abstract void trigger();
 	
 }
