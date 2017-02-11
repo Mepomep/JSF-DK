@@ -25,10 +25,13 @@ public class TileFactory implements IEntityFactory{
 	int x;
 	int y;
 	boolean debug;
-	public TileFactory(int x, int y, boolean debug){
+	boolean mined;
+	
+	public TileFactory(int x, int y, boolean mined, boolean debug){
 		this.x = x;
 		this.y = y;
 		this.debug = debug;
+		this.mined = mined;
 	}
 	
 	@Override
@@ -37,9 +40,14 @@ public class TileFactory implements IEntityFactory{
 		tile.setPosition(new Vector2f(x, y));
 		
 		if(!debug){
-			try {
-				
-				RenderComponent image = new ImageRenderComponent(new Image("Assets/earth_unhighlighted.png"));
+			try {				
+				RenderComponent image;
+				if(!mined){
+					image = new ImageRenderComponent(new Image("Assets/earth_unhighlighted.png"));
+				}
+				else{
+					image = new ImageRenderComponent(new Image("Assets/earth_mined_unhighlighted.png"));
+				}
 				tile.addComponent(image);
 			}catch (SlickException e) {
 				e.printStackTrace();
