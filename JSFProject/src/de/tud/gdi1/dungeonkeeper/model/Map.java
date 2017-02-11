@@ -10,12 +10,12 @@ public class Map {
 	TileEntity[][] tiles;
 	
 	public Map(boolean debug){
-		Entity testTile = new TileFactory(400, 300, debug).createEntity();
-		StateBasedEntityManager.getInstance().addEntity(1, testTile);
+		
 		tiles = new TileEntity[10][10];
 		for(int i = 0; i < tiles.length; i++){
 			for(int j = 0; j < tiles[0].length; j++){
-				tiles[i][j] = new TileEntity();
+				tiles[i][j] = (TileEntity) new TileFactory(30 + (int) (40 * i), 30 + (int) (40 * j), debug).createEntity();
+				StateBasedEntityManager.getInstance().addEntity(1, tiles[i][j]);
 			}
 		}
 	}

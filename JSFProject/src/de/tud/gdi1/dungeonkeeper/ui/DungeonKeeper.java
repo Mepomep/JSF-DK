@@ -3,6 +3,7 @@ package de.tud.gdi1.dungeonkeeper.ui;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import eea.engine.entity.StateBasedEntityManager;
@@ -18,6 +19,8 @@ public class DungeonKeeper extends StateBasedGame {
 	// Jeder State wird durch einen Integer-Wert gekennzeichnet
 	public static final int MAINMENU_STATE = 0;
 	public static final int GAMEPLAY_STATE = 1;
+
+	public static Vector2f windowSize = null;
 
 	public DungeonKeeper() {
 		super("Drop of Water");
@@ -38,7 +41,7 @@ public class DungeonKeeper extends StateBasedGame {
 
 		// Lege die Einstellungen des Fensters fest und starte das Fenster
 		// (nicht aber im Vollbildmodus)
-		app.setDisplayMode(1680, 1050, true);
+		app.setDisplayMode(1680, 1050, false);
 		app.start();
 	}
 

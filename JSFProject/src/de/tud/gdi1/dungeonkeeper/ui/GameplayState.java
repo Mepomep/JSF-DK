@@ -49,8 +49,8 @@ public class GameplayState extends BasicGameState {
     	// Hintergrund laden
 
     	Entity background = new Entity("background");	// Entitaet fuer Hintergrund
-    	background.setPosition(new Vector2f(400,300));	// Startposition des Hintergrunds
     	background.addComponent(new ImageRenderComponent(new Image("/assets/background.png"))); // Bildkomponente
+    	background.setPosition(new Vector2f(DungeonKeeper.windowSize.x/2,DungeonKeeper.windowSize.y/2));	// Startposition des Hintergrunds
     	    	
     	// Hintergrund-Entitaet an StateBasedEntityManager uebergeben
     	StateBasedEntityManager.getInstance().addEntity(stateID, background);
