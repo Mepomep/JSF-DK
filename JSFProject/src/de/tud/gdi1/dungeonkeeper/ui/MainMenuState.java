@@ -45,8 +45,10 @@ public class MainMenuState extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
     	// Hintergrund laden
     	Entity background = new Entity("menu");	// Entitaet fuer Hintergrund
-    	background.setPosition(new Vector2f(400,300));	// Startposition des Hintergrunds
     	background.addComponent(new ImageRenderComponent(new Image("/assets/menu.png"))); // Bildkomponente
+    	System.out.println(background.getSize().x + "; " + background.getSize().y);
+    	DungeonKeeper.windowSize = background.getSize();
+    	background.setPosition(new Vector2f(DungeonKeeper.windowSize.x/2,DungeonKeeper.windowSize.y/2));	// Startposition des Hintergrunds
     	    	
     	// Hintergrund-Entitaet an StateBasedEntityManager uebergeben
     	entityManager.addEntity(stateID, background);
