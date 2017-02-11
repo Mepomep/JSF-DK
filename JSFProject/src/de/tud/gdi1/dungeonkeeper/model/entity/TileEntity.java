@@ -2,10 +2,10 @@ package de.tud.gdi1.dungeonkeeper.model.entity;
 
 import java.util.ArrayList;
 
+import de.tud.gdi1.dungeonkeeper.model.TrapEffect;
 import de.tud.gdi1.dungeonkeeper.model.interfaces.IHighlightable;
 import de.tud.gdi1.dungeonkeeper.model.interfaces.IMinable;
 import de.tud.gdi1.dungeonkeeper.ui.Trap;
-import de.tud.gdi1.dungeonkeeper.ui.TrapEffect;
 import eea.engine.entity.Entity;
 
 public class TileEntity extends Entity implements IHighlightable, IMinable {
@@ -52,5 +52,19 @@ public class TileEntity extends Entity implements IHighlightable, IMinable {
 	public ArrayList<TrapEffect> getActiveEffectsOnTile()
 	{
 		return this.activeEffects;
+	}
+	
+	public void updateEffects()
+	{
+		for (int i = 0; i < activeEffects.size(); i++)
+		{
+			activeEffects.get(i).decreaseTicks();
+			if (activeEffects.get(i).getRemainingTicks() == 0)
+			{
+				activeEffects.remove(i);
+				i--;
+			}
+			
+		}
 	}
 }

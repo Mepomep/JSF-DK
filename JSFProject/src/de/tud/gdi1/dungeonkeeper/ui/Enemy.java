@@ -2,6 +2,8 @@ package de.tud.gdi1.dungeonkeeper.ui;
 
 import java.util.ArrayList;
 
+import de.tud.gdi1.dungeonkeeper.model.TrapEffect;
+
 public class Enemy {
 	
 	private int life, 
@@ -50,17 +52,51 @@ public class Enemy {
 	{
 		for (int i = 0; i < damageOverTime.size(); i++)
 		{
-			switch (damageOverTime.get(i)) 
+			switch (damageOverTime.get(i).getType()) 
 			{
 			case GAS_EFFECT:
-			case FIRE_EFFECT:
-				decreaseLife(maxLife/10);
+				decreaseLife(life/10);
 				break;
-
+			case FIRE_EFFECT:
+				decreaseLife(maxLife/20);
+				break;
+			case SPIKE_EFFECT:
+				decreaseLife(5);
+				break;
 			default:
 				break;
 			}
+			damageOverTime.get(i).decreaseTicks();
+			if (damageOverTime.get(i).getRemainingTicks() == 0)
+			{
+				damageOverTime.remove(i);
+				i--;
+			}
 			
+		}
+	}
+	
+	public void updateEffects(ArrayList<TrapEffect> newEffects)
+	{
+		for (int i = 0; i < newEffects.size(); i++)
+		{
+			int effectIndex = damageOverTime.indexOf(newEffects.get(i));
+			if (effectIndex != -1)
+				damageOverTime.get(effectIndex).increaseTicks();
+			else
+			{
+				int ticks = 1;//If the trap has no Damage Over Time effect it will only be applied once
+				switch (newEffects.get(i).getType()) 
+				{
+				case GAS_EFFECT:
+				case FIRE_EFFECT:
+					ticks = 5;
+					break;
+				default:
+					break;
+				}
+				damageOverTime.add(new TrapEffect(newEffects.get(i).getType(), ticks, newEffects.get(i).getTrapID()));
+			}
 			
 		}
 	}
