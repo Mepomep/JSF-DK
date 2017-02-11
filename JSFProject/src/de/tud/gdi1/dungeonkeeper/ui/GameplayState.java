@@ -54,7 +54,7 @@ public class GameplayState extends BasicGameState {
     	    	
     	// Hintergrund-Entitaet an StateBasedEntityManager uebergeben
     	StateBasedEntityManager.getInstance().addEntity(stateID, background);
-		Map map = new Map(false);
+		Map map = new Map(false, new int[]{0, 0}, new int[]{5, 5});
     	
     	// Bei Drücken der ESC-Taste zurueck ins Hauptmenue wechseln
     	Entity esc_Listener = new Entity("ESC_Listener");

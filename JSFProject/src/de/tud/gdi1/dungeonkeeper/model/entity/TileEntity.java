@@ -3,11 +3,12 @@ package de.tud.gdi1.dungeonkeeper.model.entity;
 import java.util.ArrayList;
 
 import de.tud.gdi1.dungeonkeeper.model.interfaces.IHighlightable;
+import de.tud.gdi1.dungeonkeeper.model.interfaces.IMinable;
 import de.tud.gdi1.dungeonkeeper.ui.Trap;
 import de.tud.gdi1.dungeonkeeper.ui.TrapEffect;
 import eea.engine.entity.Entity;
 
-public class TileEntity extends Entity implements IHighlightable {
+public class TileEntity extends Entity implements IHighlightable, IMinable {
 	
 	private boolean mined = false;
 	private boolean highlighted = false;
@@ -19,19 +20,23 @@ public class TileEntity extends Entity implements IHighlightable {
 	public TileEntity() {
 		super("Tile");
 	}
-
-	@Override
-	public boolean isHighlightable() {
-		return !(mined || highlighted);
-	}
 	
 	@Override
 	public boolean isHighlighted(){
-		return highlighted && !mined;
+		return highlighted;
+	}
+	
+	@Override
+	public boolean isMined() {
+		return !mined;
 	}
 	
 	public void setHighlighted(boolean highlighted){
 		this.highlighted = highlighted;
+	}
+	
+	public void setMined(boolean isMined){
+		mined = isMined;
 	}
 	
 	public void setTrap(Trap newTrap)

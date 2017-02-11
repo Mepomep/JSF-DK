@@ -46,7 +46,6 @@ public class MainMenuState extends BasicGameState {
     	// Hintergrund laden
     	Entity background = new Entity("menu");	// Entitaet fuer Hintergrund
     	background.addComponent(new ImageRenderComponent(new Image("/assets/menu.png"))); // Bildkomponente
-    	System.out.println(background.getSize().x + "; " + background.getSize().y);
     	DungeonKeeper.windowSize = background.getSize();
     	background.setPosition(new Vector2f(DungeonKeeper.windowSize.x/2,DungeonKeeper.windowSize.y/2));	// Startposition des Hintergrunds
     	    	
