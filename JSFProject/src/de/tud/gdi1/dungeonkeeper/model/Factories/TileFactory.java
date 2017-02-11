@@ -36,7 +36,7 @@ public class TileFactory implements IEntityFactory{
 		if(!debug){
 			try {
 				
-				RenderComponent image = new ImageRenderComponent(new Image("Assets/drop.png"));
+				RenderComponent image = new ImageRenderComponent(new Image("Assets/earth_unhighlighted.png"));
 				tile.addComponent(image);
 			}catch (SlickException e) {
 				e.printStackTrace();

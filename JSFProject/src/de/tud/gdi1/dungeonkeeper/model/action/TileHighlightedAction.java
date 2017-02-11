@@ -27,7 +27,7 @@ public class TileHighlightedAction implements Action {
 			if(isHighlighted){
 				entity.setHighlighted(false);
 				try {
-					entity.addComponent(new ImageRenderComponent(new Image("assets/drop.png")));
+					entity.addComponent(new ImageRenderComponent(new Image("assets/earth_unhighlighted.png")));
 				} catch (SlickException e) {
 					e.printStackTrace();
 				}
@@ -35,7 +35,7 @@ public class TileHighlightedAction implements Action {
 			else{
 				entity.setHighlighted(true);
 				try {
-					entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+					entity.addComponent(new ImageRenderComponent(new Image("assets/earth_highlighted.png")));
 				} catch (SlickException e) {
 					e.printStackTrace();
 				}
