@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import de.tud.gdi1.dungeonkeeper.model.TrapEffect;
 import de.tud.gdi1.dungeonkeeper.model.interfaces.IHighlightable;
 import de.tud.gdi1.dungeonkeeper.model.interfaces.IMinable;
+import de.tud.gdi1.dungeonkeeper.ui.Room;
 import de.tud.gdi1.dungeonkeeper.ui.Trap;
 import eea.engine.entity.Entity;
 
@@ -14,6 +15,7 @@ public class TileEntity extends Entity implements IHighlightable, IMinable {
 	private boolean highlighted = false;
 	
 	private Trap trap = null;
+	private Room room = null;
 
 	private ArrayList<TrapEffect> activeEffects = new ArrayList<TrapEffect>();//Whenever someone steps on the tile look if this list is empty and if not go through it
 
@@ -39,14 +41,34 @@ public class TileEntity extends Entity implements IHighlightable, IMinable {
 		mined = isMined;
 	}
 	
-	public void setTrap(Trap newTrap)
+	/**
+	 * @param newTrap
+	 * @return true if the new trap could be set, ideally money will only be removed from the account if the trap could be build
+	 */
+	public boolean setTrap(Trap newTrap)
 	{
+		if (this.room != null)//You can't place a trap in a room or rooms over traps
+			return false;
 		trap = newTrap;
+		return true;
 	}
 	
 	public Trap getTrap()
 	{
 		return trap;
+	}
+	
+	public boolean setRoom(Room newRoom)
+	{
+		if (this.trap != null)
+			return false;
+		room = newRoom;
+		return true;
+	}
+	
+	public Room getRoom()
+	{
+		return room;
 	}
 	
 	public ArrayList<TrapEffect> getActiveEffectsOnTile()
