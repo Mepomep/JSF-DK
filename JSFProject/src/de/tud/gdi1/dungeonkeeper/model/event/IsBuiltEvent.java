@@ -9,6 +9,8 @@ import eea.engine.event.Event;
 
 public class IsBuiltEvent extends Event {
 
+	public static int trapCounter = 0;
+	
 	public IsBuiltEvent() {
 		super("IsBuiltEvent");
 	}
@@ -16,10 +18,11 @@ public class IsBuiltEvent extends Event {
 	@Override
 	protected boolean performAction(GameContainer gc, StateBasedGame sb, int delta) {
 		Entity entity = getOwnerEntity();
-		if(IBuildable.class.isInstance(entity)){
-			return !((IBuildable)entity).isBuilt();
+		if(IBuildable.class.isInstance(entity) && !((IBuildable)entity).isBuilt()){
+			trapCounter++;
+			return true;
 		}
-		else return false;
+		return false;
 	}
 
 }

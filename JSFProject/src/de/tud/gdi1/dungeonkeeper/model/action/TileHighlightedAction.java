@@ -22,7 +22,7 @@ public class TileHighlightedAction implements Action {
 	public void update(GameContainer gc, StateBasedGame sb, int delta, Component event) {
 		TileEntity entity = (TileEntity) event.getOwnerEntity();
 		if(!debug){
-			if(entity.isHighlighted()&&entity.isMined()){
+			if(entity.isHighlighted()&&!entity.isMined()){
 				entity.setHighlighted(false);
 				try {
 					entity.addComponent(new ImageRenderComponent(new Image("assets/earth_unhighlighted.png")));
@@ -30,16 +30,15 @@ public class TileHighlightedAction implements Action {
 					e.printStackTrace();
 				}
 			}
-			else if(entity.isHighlighted()&&!entity.isMined()){
+			else if(entity.isHighlighted()&&entity.isMined()){
 				entity.setHighlighted(false);
 				try {
 					entity.addComponent(new ImageRenderComponent(new Image("assets/earth_mined_unhighlighted.png")));
-					graphicsContext a = null;
 				} catch (SlickException e) {
 					e.printStackTrace();
 				}
 			}
-			else if(!entity.isHighlighted()&&!entity.isMined()){
+			else if(!entity.isHighlighted()&&entity.isMined()){
 				entity.setHighlighted(true);
 				try {
 					entity.addComponent(new ImageRenderComponent(new Image("assets/earth_mined_highlighted.png")));

@@ -9,7 +9,7 @@ public class Map {
 	TileEntity[][] tiles;
 	
 	public Map(boolean debug, int[] posEntry, int[] posCore){
-		
+
 		tiles = new TileEntity[41][25];
 		for(int i = 0; i < tiles.length; i++){
 			for(int j = 0; j < tiles[0].length; j++){

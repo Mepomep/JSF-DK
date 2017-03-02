@@ -16,6 +16,7 @@ public class IsMinedEvent extends Event {
 	@Override
 	protected boolean performAction(GameContainer gc, StateBasedGame sb, int delta) {
 		Entity entity = getOwnerEntity();
+
 		if(IMinable.class.isInstance(entity)){
 			return !((IMinable)entity).isMined();
 		}
