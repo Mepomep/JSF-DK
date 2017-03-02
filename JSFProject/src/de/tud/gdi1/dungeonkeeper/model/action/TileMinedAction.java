@@ -18,6 +18,9 @@ public class TileMinedAction implements Action{
 	@Override
 	public void update(GameContainer gc, StateBasedGame sb, int delta, Component event) {
 		TileEntity entity = (TileEntity) event.getOwnerEntity();
-		entity.setMined(true);		
+		if(!entity.isMined()){
+			entity.setMined(true);		
+
+		}
 	}
 }

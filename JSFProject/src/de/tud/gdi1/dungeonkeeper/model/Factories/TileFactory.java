@@ -64,16 +64,15 @@ public class TileFactory implements IEntityFactory{
 		event.addAction(new TileHighlightedAction(debug));
 		tile.addComponent(event);	
 		 
-		event = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent(), new IsMinedEvent());
+		/*event = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent(), new IsMinedEvent());
+		event.addAction(new TileMinedAction(debug));
+		tile.addComponent(event);
+		*/
+		event = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent(), new IsBuiltEvent());
+		event.addAction(new TileBuiltAction(debug));
 		event.addAction(new TileMinedAction(debug));
 		tile.addComponent(event);
 		
-		Event eventb = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent(), new IsBuiltEvent());
-		eventb.addAction(new TileBuiltAction(debug));
-		tile.addComponent(eventb);
-		
-		//unfinished		
 		return tile;
 	}
-
 }

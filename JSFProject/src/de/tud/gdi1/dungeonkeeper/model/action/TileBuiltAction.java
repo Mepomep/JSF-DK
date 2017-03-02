@@ -23,7 +23,9 @@ public class TileBuiltAction implements Action {
 	public void update(GameContainer gc, StateBasedGame sb, int delta, Component event) {
 		TileEntity entity = (TileEntity) event.getOwnerEntity();
 		
-		Entity newTrap = new SpikeTrapFactory(entity, IsBuiltEvent.trapCounter, debug).createEntity();
-		StateBasedEntityManager.getInstance().addEntity(1, newTrap);
+		if(entity.isMined()){		
+			Entity newTrap = new SpikeTrapFactory(entity, IsBuiltEvent.trapCounter, debug).createEntity();
+			StateBasedEntityManager.getInstance().addEntity(1, newTrap);
+		}
 	}
 }
