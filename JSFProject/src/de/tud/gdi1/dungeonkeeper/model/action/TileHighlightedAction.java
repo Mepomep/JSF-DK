@@ -34,6 +34,7 @@ public class TileHighlightedAction implements Action {
 				entity.setHighlighted(false);
 				try {
 					entity.addComponent(new ImageRenderComponent(new Image("assets/earth_mined_unhighlighted.png")));
+					graphicsContext a = null;
 				} catch (SlickException e) {
 					e.printStackTrace();
 				}

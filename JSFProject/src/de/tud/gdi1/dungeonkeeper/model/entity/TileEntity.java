@@ -3,13 +3,14 @@ package de.tud.gdi1.dungeonkeeper.model.entity;
 import java.util.ArrayList;
 
 import de.tud.gdi1.dungeonkeeper.model.TrapEffect;
+import de.tud.gdi1.dungeonkeeper.model.interfaces.IBuildable;
 import de.tud.gdi1.dungeonkeeper.model.interfaces.IHighlightable;
 import de.tud.gdi1.dungeonkeeper.model.interfaces.IMinable;
 import de.tud.gdi1.dungeonkeeper.ui.Room;
 import de.tud.gdi1.dungeonkeeper.ui.Trap;
 import eea.engine.entity.Entity;
 
-public class TileEntity extends Entity implements IHighlightable, IMinable {
+public class TileEntity extends Entity implements IHighlightable, IMinable, IBuildable {
 	
 	private boolean mined = false;
 	private boolean highlighted = false;
@@ -30,7 +31,13 @@ public class TileEntity extends Entity implements IHighlightable, IMinable {
 	
 	@Override
 	public boolean isMined() {
-		return !mined;
+		return mined;
+	}
+	
+
+	@Override
+	public boolean isBuilt() {
+		return room != null || trap != null || !mined;
 	}
 	
 	public void setHighlighted(boolean highlighted){
