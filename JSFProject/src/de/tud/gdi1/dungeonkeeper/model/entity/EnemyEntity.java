@@ -1,18 +1,21 @@
-package de.tud.gdi1.dungeonkeeper.ui;
+package de.tud.gdi1.dungeonkeeper.model.entity;
 
 import java.util.ArrayList;
 
 import de.tud.gdi1.dungeonkeeper.model.TrapEffect;
+import eea.engine.entity.Entity;
 
-public class Enemy {
+public class EnemyEntity extends Entity
+{
 	
 	private int life, 
 				maxLife;
 	
 	private ArrayList<TrapEffect> damageOverTime;
 	
-	public Enemy(int life)
+	public EnemyEntity(int life)
 	{
+		super("Enemy");
 		this.maxLife = life;
 		this.life = maxLife;
 		damageOverTime = new ArrayList<TrapEffect>();

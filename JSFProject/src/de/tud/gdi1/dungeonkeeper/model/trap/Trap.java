@@ -1,4 +1,4 @@
-package de.tud.gdi1.dungeonkeeper.ui;
+package de.tud.gdi1.dungeonkeeper.model.trap;
 
 public abstract class Trap 
 {

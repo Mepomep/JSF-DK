@@ -1,6 +1,6 @@
 package de.tud.gdi1.dungeonkeeper.model;
 
-import de.tud.gdi1.dungeonkeeper.ui.TrapType;
+import de.tud.gdi1.dungeonkeeper.model.trap.TrapType;
 
 public class TrapEffect {
 	
