@@ -65,6 +65,11 @@ public class TileEntity extends Entity implements IHighlightable, IMinable, IBui
 		return trap;
 	}
 	
+	public boolean hasTrap()
+	{
+		return trap != null;
+	}
+	
 	public boolean setRoom(Room newRoom)
 	{
 		if (this.trap != null)
@@ -76,6 +81,11 @@ public class TileEntity extends Entity implements IHighlightable, IMinable, IBui
 	public Room getRoom()
 	{
 		return room;
+	}
+	
+	public boolean hasRoom()
+	{
+		return room != null;
 	}
 	
 	public ArrayList<TrapEffect> getActiveEffectsOnTile()
@@ -95,5 +105,25 @@ public class TileEntity extends Entity implements IHighlightable, IMinable, IBui
 			}
 			
 		}
+		
+		
+		//PLACEHOLDER ROOM ONLY SO I COULD PROGRAMM THIS. NOT FINAL PLACE FOR THIS PIECE OF CODE 
+		String toolTip = "Mined = ";
+
+		TileEntity TILE = null;//PLACEHOLDER
+		
+		if (TILE.isMined())
+		{
+			toolTip = toolTip + "Yes; ";
+			if (TILE.hasTrap())
+				toolTip = toolTip + TILE.getTrap().getName();
+			if (TILE.hasRoom())
+				toolTip = toolTip + TILE.getRoom().getName();
+				
+		}
+		else
+			toolTip = toolTip + "No;";
+		//END OF PLACEHOLDER ROOM
+		
 	}
 }

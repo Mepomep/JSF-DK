@@ -5,7 +5,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.tud.gdi1.dungeonkeeper.model.action.TileMinedAction;
-import de.tud.gdi1.dungeonkeeper.model.action.TileBuiltAction;
 import de.tud.gdi1.dungeonkeeper.model.action.TileHighlightedAction;
 import de.tud.gdi1.dungeonkeeper.model.entity.TileEntity;
 import de.tud.gdi1.dungeonkeeper.model.event.IsHighlightableEvent;
@@ -69,7 +68,6 @@ public class TileFactory implements IEntityFactory{
 		tile.addComponent(event);
 		*/
 		event = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent(), new IsBuiltEvent());
-		event.addAction(new TileBuiltAction(debug));
 		event.addAction(new TileMinedAction(debug));
 		tile.addComponent(event);
 		

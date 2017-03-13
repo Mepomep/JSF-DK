@@ -34,7 +34,11 @@ public class GameplayState extends BasicGameState {
     }
     
     /**
-     * Wird vor dem (erstmaligen) Starten dieses States ausgefuehrt
+     * Wird vor dem (erstmaligen) Starten dieses States ausgefuehrtString s = "Current trap/room = ";
+			String s2 = "none";
+			 if (entity.hasTrap())
+			 {
+				 switch (entity.getTrap().)
      */
     @Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
