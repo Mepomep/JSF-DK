@@ -10,53 +10,53 @@ public class RoutingManager {
 		nodes = new Node[maxAmountX][maxAmountY];
 	}
 
-	public void AddNode(int x, int y) {
+	public void addNode(int x, int y) {
 		nodes[x][y] = new Node(x, y, nodes.length, nodes[0].length);
 		if (nodes[x - 1][y] != null) {
-			nodes[x][y].AddNeighbor(NeighborPositions.LEFT);
-			nodes[x - 1][y].AddNeighbor(NeighborPositions.RIGHT);
+			nodes[x][y].addNeighbor(NeighborPositions.LEFT);
+			nodes[x - 1][y].addNeighbor(NeighborPositions.RIGHT);
 		}
 		if (nodes[x + 1][y] != null) {
-			nodes[x][y].AddNeighbor(NeighborPositions.RIGHT);
-			nodes[x + 1][y].AddNeighbor(NeighborPositions.LEFT);
+			nodes[x][y].addNeighbor(NeighborPositions.RIGHT);
+			nodes[x + 1][y].addNeighbor(NeighborPositions.LEFT);
 		}
 		if (nodes[x][y + 1] != null) {
-			nodes[x][y].AddNeighbor(NeighborPositions.UP);
-			nodes[x][y + 1].AddNeighbor(NeighborPositions.DOWN);
+			nodes[x][y].addNeighbor(NeighborPositions.UP);
+			nodes[x][y + 1].addNeighbor(NeighborPositions.DOWN);
 		}
 		if (nodes[x][y - 1] != null) {
-			nodes[x][y].AddNeighbor(NeighborPositions.DOWN);
-			nodes[x][y - 1].AddNeighbor(NeighborPositions.UP);
+			nodes[x][y].addNeighbor(NeighborPositions.DOWN);
+			nodes[x][y - 1].addNeighbor(NeighborPositions.UP);
 		}
 
-		UpdateNeighbors(nodes[x][y]);
+		updateNeighbors(nodes[x][y]);
 	}
 
-	private void UpdateNeighbors(Node node) {
+	private void updateNeighbors(Node node) {
 		node.updateNode();
 		if (node.newShortest) {
 			node.ackUpdate();
 			if (nodes[node.getX() + 1][node.getY()] != null) {
 				nodes[node.getX() + 1][node.getY()].neighbors[0] = node.shortest;
-				UpdateNeighbors(nodes[node.getX() + 1][node.getY()]);
+				updateNeighbors(nodes[node.getX() + 1][node.getY()]);
 			}
 			if (nodes[node.getX() - 1][node.getY()] != null) {
 				nodes[node.getX() - 1][node.getY()].neighbors[1] = node.shortest;
-				UpdateNeighbors(nodes[node.getX() - 1][node.getY()]);
+				updateNeighbors(nodes[node.getX() - 1][node.getY()]);
 			}
 			if (nodes[node.getX()][node.getY() - 1] != null) {
 				nodes[node.getX()][node.getY() - 1].neighbors[2] = node.shortest;
-				UpdateNeighbors(nodes[node.getX()][node.getY() - 1]);
+				updateNeighbors(nodes[node.getX()][node.getY() - 1]);
 			}
 			if (nodes[node.getX()][node.getY() + 1] != null) {
 				nodes[node.getX()][node.getY() + 1].neighbors[3] = node.shortest;
-				UpdateNeighbors(nodes[node.getX()][node.getY() + 1]);
+				updateNeighbors(nodes[node.getX()][node.getY() + 1]);
 			}
 		}
 	}
 	
-	public Vector2f GetNextNode(int sourceX, int sourceY, int targetX, int targetY){
-		NeighborPositions nextNode = nodes[sourceX][sourceY].GetNeighbor(targetX, targetY);
+	public Vector2f getNextNode(int sourceX, int sourceY, int targetX, int targetY){
+		NeighborPositions nextNode = nodes[sourceX][sourceY].getNeighbor(targetX, targetY);
 		if(nextNode == NeighborPositions.LEFT){
 			return new Vector2f(sourceX - 1, sourceY);
 		}
@@ -70,4 +70,6 @@ public class RoutingManager {
 			return new Vector2f(sourceX, sourceY - 1);
 		}
 	}
+	
+	
 }

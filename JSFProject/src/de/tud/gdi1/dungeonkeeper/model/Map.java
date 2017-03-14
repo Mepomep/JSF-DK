@@ -1,7 +1,7 @@
 package de.tud.gdi1.dungeonkeeper.model;
 
-import de.tud.gdi1.dungeonkeeper.model.Factories.TileFactory;
 import de.tud.gdi1.dungeonkeeper.model.entity.TileEntity;
+import de.tud.gdi1.dungeonkeeper.model.factories.TileFactory;
 import eea.engine.entity.StateBasedEntityManager;
 
 public class Map {

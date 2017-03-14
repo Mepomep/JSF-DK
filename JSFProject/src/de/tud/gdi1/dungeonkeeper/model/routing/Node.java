@@ -39,7 +39,7 @@ public class Node {
 		}
 	}
 
-	protected void AddNeighbor(NeighborPositions position) {
+	protected void addNeighbor(NeighborPositions position) {
 		
 		int xOffset = x;
 		int yOffset = y;
@@ -80,7 +80,7 @@ public class Node {
 		return y;
 	}
 	
-	public NeighborPositions GetNeighbor(int destinationX, int destinationY){
+	public NeighborPositions getNeighbor(int destinationX, int destinationY){
 		
 		int neighbor = suggestedNeighbor[destinationX][destinationY];
 		
