@@ -6,8 +6,8 @@ import de.tud.gdi1.dungeonkeeper.model.TrapEffect;
 import de.tud.gdi1.dungeonkeeper.model.interfaces.IBuildable;
 import de.tud.gdi1.dungeonkeeper.model.interfaces.IHighlightable;
 import de.tud.gdi1.dungeonkeeper.model.interfaces.IMinable;
-import de.tud.gdi1.dungeonkeeper.ui.Room;
-import de.tud.gdi1.dungeonkeeper.ui.Trap;
+import de.tud.gdi1.dungeonkeeper.model.room.Room;
+import de.tud.gdi1.dungeonkeeper.model.trap.Trap;
 import eea.engine.entity.Entity;
 
 public class TileEntity extends Entity implements IHighlightable, IMinable, IBuildable {

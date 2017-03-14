@@ -1,5 +1,7 @@
 package de.tud.gdi1.dungeonkeeper.ui;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -10,6 +12,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.tud.gdi1.dungeonkeeper.model.Map;
+import de.tud.gdi1.dungeonkeeper.model.entity.EnemyEntity;
 import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
@@ -26,7 +29,10 @@ public class GameplayState extends BasicGameState {
 
 	private int stateID; 							// Identifier dieses BasicGameState
 	private StateBasedEntityManager entityManager; 	// zugehoeriger entityManager
-	private int coreLife;
+	private int coreLife = 20;
+	private double time = 0;
+	
+	private ArrayList<EnemyEntity> enemies = new ArrayList<EnemyEntity>();
     
     GameplayState( int sid ) {
        stateID = sid;
@@ -51,6 +57,9 @@ public class GameplayState extends BasicGameState {
     	    	
     	// Hintergrund-Entitaet an StateBasedEntityManager uebergeben
     	StateBasedEntityManager.getInstance().addEntity(stateID, background);
+    	
+    	//Create a new map
+		@SuppressWarnings("unused")
 		Map map = new Map(false, new int[]{13, 17}, new int[]{36, 9});
     	
     	// Bei Drücken der ESC-Taste zurueck ins Hauptmenue wechseln
@@ -62,16 +71,30 @@ public class GameplayState extends BasicGameState {
     }
 
     /**
-     * Wird vor dem Frame ausgefuehrt
+     * Executed before the frame
      */
     @Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		// StatedBasedEntityManager soll alle Entities aktualisieren
     	entityManager.updateEntities(container, game, delta);
+    	double timefactor = container.getFPS() * 0.00005;
+    	 
+    	time = time + delta * timefactor;
+    	if (time > 50)
+    	{
+    		System.out.println("Test, time = " + System.currentTimeMillis());
+    		time = 0;
+    		for (int i = 0; i < enemies.size(); i++)
+    		{
+    			//enemy update
+    		}
+    		enemies.add(new EnemyEntity(10));
+    	}
+    	 
 	}
     
     /**
-     * Wird mit dem Frame ausgefuehrt
+     * Executed during the frame
      */
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {

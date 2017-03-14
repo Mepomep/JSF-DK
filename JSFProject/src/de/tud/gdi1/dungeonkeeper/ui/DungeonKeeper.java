@@ -23,7 +23,7 @@ public class DungeonKeeper extends StateBasedGame {
 	public static Vector2f windowSize = null;
 
 	public DungeonKeeper() {
-		super("Drop of Water");
+		super("Dungeon Keeper");
 	}
 
 	public static void main(String[] args) throws SlickException {
