@@ -22,92 +22,124 @@ import eea.engine.event.basicevents.KeyPressedEvent;
 /**
  * @author Timo Bähr
  *
- * Diese Klasse repraesentiert das Spielfenster, indem ein Wassertropfen
- * erscheint und nach unten faellt.
+ *         This class represents yuor main dungeon... defend it!
  */
-public class GameplayState extends BasicGameState {
-
-	private int stateID; 							// Identifier dieses BasicGameState
-	private StateBasedEntityManager entityManager; 	// zugehoeriger entityManager
-	private int coreLife = 20;
-	private double time = 0;
+public class GameplayState extends BasicGameState
+{
 	
-	private ArrayList<EnemyEntity> enemies = new ArrayList<EnemyEntity>();
-    
-    GameplayState( int sid ) {
-       stateID = sid;
-       entityManager = StateBasedEntityManager.getInstance();
-    }
-    
-    /**
-     * Wird vor dem (erstmaligen) Starten dieses States ausgefuehrtString s = "Current trap/room = ";
-			String s2 = "none";
-			 if (entity.hasTrap())
-			 {
-				 switch (entity.getTrap().)
-     */
-    @Override
-	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-    	
-    	// Hintergrund laden
-
-    	Entity background = new Entity("background");	// Entitaet fuer Hintergrund
-    	background.addComponent(new ImageRenderComponent(new Image("/assets/background.png"))); // Bildkomponente
-    	background.setPosition(new Vector2f(DungeonKeeper.windowSize.x/2,DungeonKeeper.windowSize.y/2));	// Startposition des Hintergrunds
-    	    	
-    	// Hintergrund-Entitaet an StateBasedEntityManager uebergeben
-    	StateBasedEntityManager.getInstance().addEntity(stateID, background);
-    	
-    	//Create a new map
-		@SuppressWarnings("unused")
-		Map map = new Map(false, new int[]{13, 17}, new int[]{36, 9});
-    	
-    	// Bei Drücken der ESC-Taste zurueck ins Hauptmenue wechseln
-    	Entity esc_Listener = new Entity("ESC_Listener");
-    	KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-    	esc_pressed.addAction(new ChangeStateAction(DungeonKeeper.MAINMENU_STATE));
-    	esc_Listener.addComponent(esc_pressed);    	
-    	entityManager.addEntity(stateID, esc_Listener);   	
-    }
-
-    /**
-     * Executed before the frame
-     */
-    @Override
-	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		// StatedBasedEntityManager soll alle Entities aktualisieren
-    	entityManager.updateEntities(container, game, delta);
-    	double timefactor = container.getFPS() * 0.00005;
-    	 
-    	time = time + delta * timefactor;
-    	if (time > 50)
-    	{
-    		System.out.println("Test, time = " + System.currentTimeMillis());
-    		time = 0;
-    		for (int i = 0; i < enemies.size(); i++)
-    		{
-    			//enemy update
-    		}
-    		enemies.add(new EnemyEntity(10));
-    	}
-    	 
+	private double				time		= 0;
+	
+	private int					stateID,			// Identifier dieses BasicGameState
+								coreLife	= 20, 
+								mana		= 10;
+	
+	private StateBasedEntityManager	entityManager;	// zugehoeriger entityManager
+																			
+	private ArrayList<EnemyEntity>	enemies	= new ArrayList<EnemyEntity>();
+	
+	GameplayState(int sid)
+	{
+		stateID = sid;
+		entityManager = StateBasedEntityManager.getInstance();
 	}
-    
-    /**
-     * Executed during the frame
-     */
+	
+	/**
+	 * Wird vor dem (erstmaligen) Starten dieses States ausgefuehrtString s =
+	 * "Current trap/room = "; String s2 = "none"; if (entity.hasTrap()) {
+	 * switch (entity.getTrap().)
+	 */
 	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException
+	{
+		
+		// Hintergrund laden
+		
+		Entity background = new Entity("background"); // Entitaet fuer Hintergrund
+		background.addComponent(new ImageRenderComponent(new Image("/assets/background.png"))); // Bildkomponente
+		background.setPosition(new Vector2f(DungeonKeeper.windowSize.x / 2,DungeonKeeper.windowSize.y / 2)); // Startposition des Hintergrunds
+		
+		// Hintergrund-Entitaet an StateBasedEntityManager uebergeben
+		StateBasedEntityManager.getInstance().addEntity(stateID, background);
+		
+		// Create a new map
+		@SuppressWarnings("unused")
+		Map map = new Map(false, new int[] { 13, 17 }, new int[] { 36, 9 });
+		
+		// By pressing Escape the player switches back to the main-menu
+		Entity esc_Listener = new Entity("ESC_Listener");
+		KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
+		esc_pressed.addAction(new ChangeStateAction(
+				DungeonKeeper.MAINMENU_STATE));
+		esc_Listener.addComponent(esc_pressed);
+		entityManager.addEntity(stateID, esc_Listener);
+	}
+	
+	/**
+	 * Executed before the frame
+	 */
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int delta)
+			throws SlickException
+	{
+		// StatedBasedEntityManager soll alle Entities aktualisieren
+		entityManager.updateEntities(container, game, delta);
+		double timefactor = container.getFPS() * 0.00005;
+		
+		time = time + delta * timefactor;
+		if (time > 50)
+		{
+			mana++;
+			System.out.println("Test, time = " + System.currentTimeMillis());
+			time = 0;
+			for (int i = 0; i < enemies.size(); i++)
+			{
+				// enemy update
+			}
+			enemies.add(new EnemyEntity(10));
+		}
+		
+	}
+	
+	/**
+	 * Executed during the frame
+	 */
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException
+	{
 		// StatedBasedEntityManager soll alle Entities rendern
 		entityManager.renderEntities(container, game, g);
 		if (coreLife < 1)
 		{
-			//Game over logic
+			// Game over logic
+		}
+		
+		for (int i = 0; i < enemies.size(); i++)
+		{
+			if (enemies.get(i).getLife() < 1)
+			{
+				enemies.remove(i);
+				//Possibly add gold
+			}
 		}
 	}
-
+	
+	public void castSpell(EnemyEntity enemy)
+	{
+		for (int i = 0; i < enemies.size(); i++)
+		{
+			if (enemies.get(i).equals(enemy))
+			{
+				enemies.get(i).setLife(0);
+				mana--;
+			}
+		}
+	}
+	
 	@Override
-	public int getID() {
+	public int getID()
+	{
 		return stateID;
 	}
 }
