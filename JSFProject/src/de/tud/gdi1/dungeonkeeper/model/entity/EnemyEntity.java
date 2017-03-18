@@ -3,15 +3,19 @@ package de.tud.gdi1.dungeonkeeper.model.entity;
 import java.util.ArrayList;
 
 import de.tud.gdi1.dungeonkeeper.model.TrapEffect;
+import de.tud.gdi1.dungeonkeeper.model.routing.RoutingManager;
 import eea.engine.entity.Entity;
 
 public class EnemyEntity extends Entity
 {
 	
 	private int life, 
-				maxLife;
+				maxLife,
+				speed;//Will later be influenced by the class
 	
 	private ArrayList<TrapEffect> damageOverTime;
+	
+	private RoutingManager ai;
 	
 	public EnemyEntity(int life)
 	{
@@ -102,5 +106,11 @@ public class EnemyEntity extends Entity
 			}
 			
 		}
+	}
+	
+	//should be called whenever enemy moves
+	public void move()
+	{
+		
 	}
 }
