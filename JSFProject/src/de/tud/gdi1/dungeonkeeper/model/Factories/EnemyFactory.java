@@ -1,4 +1,4 @@
-package de.tud.gdi1.dungeonkeeper.model.Factories;
+package de.tud.gdi1.dungeonkeeper.model.factories;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;

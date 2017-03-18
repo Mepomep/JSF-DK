@@ -69,7 +69,7 @@ public class TileFactory implements IEntityFactory{
 		event = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent(), new IsBuiltEvent());
 		event.addAction(new TileMinedAction(debug));
 		tile.addComponent(event);
-		
+				
 		return tile;
 	}
 }

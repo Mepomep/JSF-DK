@@ -41,7 +41,7 @@ public class DungeonKeeper extends StateBasedGame {
 
 		// Lege die Einstellungen des Fensters fest und starte das Fenster
 		// (nicht aber im Vollbildmodus)
-		app.setDisplayMode(1680, 1050, false);
+		app.setDisplayMode(1680, 1050, true);
 		app.start();
 	}
 
