@@ -1,13 +1,13 @@
 package de.tud.gdi1.dungeonkeeper.model.room;
 
-public abstract class Room {
+public abstract class Room
+{
 	
-	
-	private RoomType roomType = null;
-	
-	private String name = null;
-	
-	public Room (String name, RoomType type)
+	private RoomType	roomType	= null;
+									
+	private String		name		= null;
+									
+	public Room(String name, RoomType type)
 	{
 		this.name = name;
 		this.roomType = type;

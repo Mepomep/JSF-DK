@@ -10,14 +10,13 @@ import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.interfaces.IEntityFactory;
 
-public class EnemyFactory implements IEntityFactory{
-
-	private boolean debug;
+public class EnemyFactory implements IEntityFactory
+{
 	
-	private int	hp,
-				x,
-				y;
-	
+	private boolean	debug;
+					
+	private int		hp, x, y;
+					
 	public EnemyFactory(int x, int y, int maxHP, boolean debug)
 	{
 		this.x = x;
@@ -27,20 +26,25 @@ public class EnemyFactory implements IEntityFactory{
 	}
 	
 	@Override
-	public Entity createEntity() {
+	public Entity createEntity()
+	{
 		Entity enemy = new EnemyEntity(hp);
 		enemy.setPosition(new Vector2f(x, y));
 		
-		if(!debug){
-			try {				
-				RenderComponent image = new ImageRenderComponent(new Image("Assets/earth_unhighlighted.png"));
+		if (!debug)
+		{
+			try
+			{
+				RenderComponent image = new ImageRenderComponent(
+						new Image("Assets/earth_unhighlighted.png"));
 				enemy.addComponent(image);
-			}catch (SlickException e) {
+			} catch (SlickException e)
+			{
 				e.printStackTrace();
 			}
-		} else enemy.setSize(new Vector2f(10,10));
-		
-		
+		} else
+			enemy.setSize(new Vector2f(10, 10));
+			
 		return enemy;
 	}
 }

@@ -11,50 +11,68 @@ import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.StateBasedEntityManager;
 
-public class TileHighlightedAction implements Action {
+public class TileHighlightedAction implements Action
+{
 	
 	boolean debug;
-	public TileHighlightedAction(boolean debug){
+	
+	public TileHighlightedAction(boolean debug)
+	{
 		this.debug = debug;
-		//(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)(ಠ_ಠ)
 	}
-
+	
 	@Override
-	public void update(GameContainer gc, StateBasedGame sb, int delta, Component event) {
+	public void update(GameContainer gc, StateBasedGame sb, int delta,
+			Component event)
+	{
 		TileEntity entity = (TileEntity) event.getOwnerEntity();
-		if(!debug){
-			if(entity.isHighlighted()&&!entity.isMined()){
+		if (!debug)
+		{
+			if (entity.isHighlighted() && !entity.isMined())
+			{
 				entity.setHighlighted(false);
-				try {
-					entity.addComponent(new ImageRenderComponent(new Image("assets/earth_unhighlighted.png")));
-				} catch (SlickException e) {
+				try
+				{
+					entity.addComponent(new ImageRenderComponent(
+							new Image("assets/earth_unhighlighted.png")));
+				} catch (SlickException e)
+				{
 					e.printStackTrace();
 				}
-			}
-			else if(entity.isHighlighted()&&entity.isMined()){
+			} else if (entity.isHighlighted() && entity.isMined())
+			{
 				entity.setHighlighted(false);
-				try {
-					entity.addComponent(new ImageRenderComponent(new Image("assets/earth_mined_unhighlighted.png")));
-				} catch (SlickException e) {
+				try
+				{
+					entity.addComponent(new ImageRenderComponent(
+							new Image("assets/earth_mined_unhighlighted.png")));
+				} catch (SlickException e)
+				{
+					e.printStackTrace();
+				}
+			} else if (!entity.isHighlighted() && entity.isMined())
+			{
+				entity.setHighlighted(true);
+				try
+				{
+					entity.addComponent(new ImageRenderComponent(
+							new Image("assets/earth_mined_highlighted.png")));
+				} catch (SlickException e)
+				{
+					e.printStackTrace();
+				}
+			} else
+			{
+				entity.setHighlighted(true);
+				try
+				{
+					entity.addComponent(new ImageRenderComponent(
+							new Image("assets/earth_highlighted.png")));
+				} catch (SlickException e)
+				{
 					e.printStackTrace();
 				}
 			}
-			else if(!entity.isHighlighted()&&entity.isMined()){
-				entity.setHighlighted(true);
-				try {
-					entity.addComponent(new ImageRenderComponent(new Image("assets/earth_mined_highlighted.png")));
-				} catch (SlickException e) {
-					e.printStackTrace();
-				}
-			}
-			else{
-				entity.setHighlighted(true);
-				try {
-					entity.addComponent(new ImageRenderComponent(new Image("assets/earth_highlighted.png")));
-				} catch (SlickException e) {
-					e.printStackTrace();
-				}
-			}	
 		}
 	}
 }

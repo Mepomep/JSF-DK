@@ -7,18 +7,23 @@ import de.tud.gdi1.dungeonkeeper.model.interfaces.IHighlightable;
 import eea.engine.entity.Entity;
 import eea.engine.event.Event;
 
-public class IsHighlightedEvent extends Event{
-
-	public IsHighlightedEvent() {
+public class IsHighlightedEvent extends Event
+{
+	
+	public IsHighlightedEvent()
+	{
 		super("IsHighlightedEvent");
 	}
-
+	
 	@Override
-	protected boolean performAction(GameContainer gc, StateBasedGame sb, int delta) {
+	protected boolean performAction(GameContainer gc, StateBasedGame sb,
+			int delta)
+	{
 		Entity entity = getOwnerEntity();
-		if(IHighlightable.class.isInstance(entity)){
-			return ((IHighlightable)entity).isHighlighted();
-		}
-		else return false;
+		if (IHighlightable.class.isInstance(entity))
+		{
+			return ((IHighlightable) entity).isHighlighted();
+		} else
+			return false;
 	}
 }

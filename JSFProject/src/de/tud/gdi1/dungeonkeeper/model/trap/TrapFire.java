@@ -9,6 +9,6 @@ public class TrapFire extends Trap
 	
 	public void trigger()
 	{
-		
+	
 	}
 }

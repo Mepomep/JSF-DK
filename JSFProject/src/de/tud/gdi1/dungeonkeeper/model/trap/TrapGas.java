@@ -6,8 +6,9 @@ public class TrapGas extends Trap
 	{
 		super("Gas-Trap", TrapType.GAS_EFFECT);
 	}
+	
 	public void trigger()
 	{
-		
+	
 	}
 }

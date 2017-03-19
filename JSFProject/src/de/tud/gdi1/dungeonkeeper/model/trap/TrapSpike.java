@@ -9,6 +9,6 @@ public class TrapSpike extends Trap
 	
 	public void trigger()
 	{
-		
+	
 	}
 }

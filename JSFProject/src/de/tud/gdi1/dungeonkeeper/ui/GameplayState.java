@@ -21,22 +21,24 @@ import eea.engine.event.basicevents.KeyPressedEvent;
 
 /**
  * @author Timo Bähr
- *
+ *		
  *         This class represents yuor main dungeon... defend it!
  */
 public class GameplayState extends BasicGameState
 {
 	
-	private double				time		= 0;
-	
-	private int					stateID,			// Identifier dieses BasicGameState
-								coreLife	= 20, 
-								mana		= 10;
-	
-	private StateBasedEntityManager	entityManager;	// zugehoeriger entityManager
-																			
+	private double					time	= 0;
+											
+	private int						stateID,									// Identifier
+																				// dieses
+																				// BasicGameState
+			coreLife = 20, mana = 10;
+			
+	private StateBasedEntityManager	entityManager;								// zugehoeriger
+																				// entityManager
+									
 	private ArrayList<EnemyEntity>	enemies	= new ArrayList<EnemyEntity>();
-	
+											
 	GameplayState(int sid)
 	{
 		stateID = sid;
@@ -55,10 +57,14 @@ public class GameplayState extends BasicGameState
 		
 		// Hintergrund laden
 		
-		Entity background = new Entity("background"); // Entitaet fuer Hintergrund
-		background.addComponent(new ImageRenderComponent(new Image("/assets/background.png"))); // Bildkomponente
-		background.setPosition(new Vector2f(DungeonKeeper.windowSize.x / 2,DungeonKeeper.windowSize.y / 2)); // Startposition des Hintergrunds
-		
+		Entity background = new Entity("background"); // Entitaet fuer
+														// Hintergrund
+		background.addComponent(
+				new ImageRenderComponent(new Image("/assets/background.png"))); // Bildkomponente
+		background.setPosition(new Vector2f(DungeonKeeper.windowSize.x / 2,
+				DungeonKeeper.windowSize.y / 2)); // Startposition des
+													// Hintergrunds
+				
 		// Hintergrund-Entitaet an StateBasedEntityManager uebergeben
 		StateBasedEntityManager.getInstance().addEntity(stateID, background);
 		
@@ -69,8 +75,8 @@ public class GameplayState extends BasicGameState
 		// By pressing Escape the player switches back to the main-menu
 		Entity esc_Listener = new Entity("ESC_Listener");
 		KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-		esc_pressed.addAction(new ChangeStateAction(
-				DungeonKeeper.MAINMENU_STATE));
+		esc_pressed
+				.addAction(new ChangeStateAction(DungeonKeeper.MAINMENU_STATE));
 		esc_Listener.addComponent(esc_pressed);
 		entityManager.addEntity(stateID, esc_Listener);
 	}
@@ -120,7 +126,7 @@ public class GameplayState extends BasicGameState
 			if (enemies.get(i).getLife() < 1)
 			{
 				enemies.remove(i);
-				//Possibly add gold
+				// Possibly add gold
 			}
 		}
 	}

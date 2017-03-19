@@ -2,15 +2,13 @@ package de.tud.gdi1.dungeonkeeper.model;
 
 import de.tud.gdi1.dungeonkeeper.model.trap.TrapType;
 
-public class TrapEffect {
+public class TrapEffect
+{
 	
-
-	private TrapType type;
-	private int ticksRemaining,
-				trapID;
-	
-	
-	public TrapEffect (TrapType type, int ticks, int trapID)
+	private TrapType	type;
+	private int			ticksRemaining, trapID;
+						
+	public TrapEffect(TrapType type, int ticks, int trapID)
 	{
 		this.type = type;
 		this.ticksRemaining = ticks;
@@ -53,5 +51,5 @@ public class TrapEffect {
 			return false;
 		return ((TrapEffect) o).trapID == this.trapID;
 	}
-
+	
 }

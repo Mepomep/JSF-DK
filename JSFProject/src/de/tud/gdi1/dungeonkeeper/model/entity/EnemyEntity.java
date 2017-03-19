@@ -9,14 +9,14 @@ import eea.engine.entity.Entity;
 public class EnemyEntity extends Entity
 {
 	
-	private int life, 
-				maxLife,
-				speed;//Will later be influenced by the class
-	
-	private ArrayList<TrapEffect> damageOverTime;
-	
-	private RoutingManager ai;
-	
+	private int						life, maxLife, speed;	// Will later be
+															// influenced by the
+															// class
+									
+	private ArrayList<TrapEffect>	damageOverTime;
+									
+	private RoutingManager			ai;
+									
 	public EnemyEntity(int life)
 	{
 		super("Enemy");
@@ -55,23 +55,23 @@ public class EnemyEntity extends Entity
 		return life > 0;
 	}
 	
-	public void processDamageOverTime()//Is called every second
+	public void processDamageOverTime()// Is called every second
 	{
 		for (int i = 0; i < damageOverTime.size(); i++)
 		{
-			switch (damageOverTime.get(i).getType()) 
+			switch (damageOverTime.get(i).getType())
 			{
-			case GAS_EFFECT:
-				decreaseLife(life/10);
-				break;
-			case FIRE_EFFECT:
-				decreaseLife(maxLife/20);
-				break;
-			case SPIKE_EFFECT:
-				decreaseLife(5);
-				break;
-			default:
-				break;
+				case GAS_EFFECT:
+					decreaseLife(life / 10);
+					break;
+				case FIRE_EFFECT:
+					decreaseLife(maxLife / 20);
+					break;
+				case SPIKE_EFFECT:
+					decreaseLife(5);
+					break;
+				default:
+					break;
 			}
 			damageOverTime.get(i).decreaseTicks();
 			if (damageOverTime.get(i).getRemainingTicks() == 0)
@@ -92,25 +92,27 @@ public class EnemyEntity extends Entity
 				damageOverTime.get(effectIndex).increaseTicks();
 			else
 			{
-				int ticks = 1;//If the trap has no Damage Over Time effect it will only be applied once
-				switch (newEffects.get(i).getType()) 
+				int ticks = 1;// If the trap has no Damage Over Time effect it
+								// will only be applied once
+				switch (newEffects.get(i).getType())
 				{
-				case GAS_EFFECT:
-				case FIRE_EFFECT:
-					ticks = 5;
-					break;
-				default:
-					break;
+					case GAS_EFFECT:
+					case FIRE_EFFECT:
+						ticks = 5;
+						break;
+					default:
+						break;
 				}
-				damageOverTime.add(new TrapEffect(newEffects.get(i).getType(), ticks, newEffects.get(i).getTrapID()));
+				damageOverTime.add(new TrapEffect(newEffects.get(i).getType(),
+						ticks, newEffects.get(i).getTrapID()));
 			}
 			
 		}
 	}
 	
-	//should be called whenever enemy moves
+	// should be called whenever enemy moves
 	public void move()
 	{
-		
+	
 	}
 }
